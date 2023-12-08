@@ -7,12 +7,12 @@ const server = express();
 
 server.use(express.json());
 
-server.put("api/users/:id", async (req, res) => {
+server.put("/api/users/:id", async (req, res) => {
     try {
         const possibleUser = await User.findById(req.params.id)
 
         if (!possibleUser) {
-            res.status(400).json({
+            res.status(404).json({
                 message: "The user with the specified ID does not exist"
             })
         } else {
